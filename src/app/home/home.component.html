@@ -1,0 +1,67 @@
+<div class="movies-container">
+  <div *ngIf="!movies; else elseBlock" >
+    <div class="text-center">
+      <i class="fa fa-pulse fa-spinner"></i>
+    </div>
+  </div>
+
+  <div class="selected-movie-outlet" [hidden]="!selectedMovie">
+    <div class="blackdrop" (click)="close()"></div>
+    <div class="clearfix">
+      <div class="float-right btn-close" aria-label="Close" (click)="close()"></div>
+    </div>
+    <router-outlet ></router-outlet>
+  </div>
+
+  <ng-template #elseBlock>
+    <div class="users-list">
+      <div class="form-inline mb-3">
+
+        <div class="input-group col-12 search p-0">
+          <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
+          <input type='text'
+                 class="form-control"
+                 placeholder=''
+                 (keyup)='updateFilter(query)'
+                 [(ngModel)]="query"
+          >
+          <div class="input-group-addon" *ngIf="query">
+            <strong>{{count}}</strong>
+          </div>
+        </div>
+      </div>
+
+      <ngx-datatable
+        class='material datatable'
+        #table
+        [rows]='movies'
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="150"
+        [scrollbarV]="true"
+        [scrollbarH]="true"
+        [sorts]="[{prop: 'title', dir: 'asc'}]"
+        (activate)="onActivate($event)"
+      >
+        <ngx-datatable-column name="Poster" [sortable]="false">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            <img src="{{value}}" class="user-avatar">
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="Title" >
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            {{value}}
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Your Last Vote" [sortable]="false" >
+          <ng-template let-value="value" let-row="row" ngx-datatable-cell-template>
+            <div *ngIf="localRatings?.hasOwnProperty(row.id)"> {{localRatings[row.id]}} <span class="fa fa-star"></span></div>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+  </ng-template>
+
+</div>

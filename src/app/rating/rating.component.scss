@@ -1,0 +1,49 @@
+.rating-container {
+  background: #fff;
+  padding: 15px;
+  .rating {
+    text-align: center;
+    .fa {
+      color: #e0cd64;
+    }
+    img {
+      max-height: 40vh;
+      max-width: 100%;
+    }
+    .current-rating {
+      font-size: 20px;
+    }
+    .label {
+      .fa {
+        width: 20px;
+        font-size: 20px;
+      }
+    }
+    .rate {
+      direction: rtl;
+      text-align: center;
+      &.disabled {
+        & > span {
+          cursor: not-allowed;
+        }
+      }
+      & > span {
+        font-size: 30px;
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        &:hover:before,
+        &:hover ~ span:before {
+          content: "\f005 ";
+          color: rgba(224, 205, 100, .6);
+        }
+        &.active{
+         &:before,
+          & ~ span:before {
+           content: "\f005 ";
+          }
+        }
+      }
+    }
+  }
+}

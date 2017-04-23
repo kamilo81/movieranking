@@ -1,0 +1,78 @@
+@import "../../scss/partials";
+
+.selected-movie-outlet {
+  overflow: auto;
+  position: absolute;
+  z-index: 3;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  padding: 15px;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  .blackdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  .clearfix {
+    background: #fff;
+  }
+  .btn-close {
+    margin: 15px;
+    height: 35px;
+    width: 35px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: #dd3b44;
+    font-size: 1.6rem;
+    transition: all .3s;
+    position: relative;
+    &:after {
+      content: '\f00d';
+      font-family: $AwesomeFont;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 1px;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    &:hover {
+      background: #dd3b44;
+      color: #ffffff;
+    }
+  }
+}
+
+.users-list {
+  overflow: auto;
+  background: #ffffff;
+  padding-top: 15px;
+  .datatable {
+    height: calc(100vh - 73px);
+    .user-avatar {
+      max-width: 100px;
+      max-height: 120px;
+      margin: auto;
+    }
+    .user-status {
+      padding: 5px;
+      color: #ffffff;
+      font-family: $FontLight;
+      font-size: .8rem;
+      width: 50px;
+      text-align: center;
+    }
+  }
+}
+

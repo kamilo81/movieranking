@@ -1,0 +1,39 @@
+<div class="rating-container">
+  <div class="error bg-danger rounded p-1 text-white" *ngIf="error">
+    There is no movie with id {{id}}
+    <div class="small">{{error}}</div>
+  </div>
+  <div class="rating" *ngIf="rating; else loadingBlock">
+    <img [src]="movie.poster" [alt]="movie.title">
+    <h2>{{movie.title}}</h2>
+    <div class="current-rating">
+      {{rating}} <span class="fa fa-star"></span>
+    </div>
+
+    <div class="mt-3 label">
+      Your last vote:
+      <span class="fa" [ngClass]="
+        {
+          '': voteSuccess === 0,
+          'fa-check text-success': voteSuccess === 1,
+          'fa-times text-danger': voteSuccess === 2
+        }"></span>
+    </div>
+
+    <div class="rate" [ngClass]="voting ? 'disabled' : ''">
+      <span class="fa fa-star-o" *ngFor="let i of availableVotes"
+            (click)="vote(i)"
+            [ngClass]="currentVote === i ? 'active' : ''"
+      ></span>
+
+    </div>
+
+
+  </div>
+  <ng-template #loadingBlock *ngIf="!error">
+    <div class="text-center">
+      <i class="fa fa-pulse fa-spinner"></i>
+    </div>
+  </ng-template>
+
+</div>
